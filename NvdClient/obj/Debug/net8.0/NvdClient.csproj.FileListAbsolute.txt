@@ -1,0 +1,12 @@
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/bin/Debug/net8.0/NvdClient.deps.json
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/bin/Debug/net8.0/NvdClient.dll
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/bin/Debug/net8.0/NvdClient.pdb
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.GeneratedMSBuildEditorConfig.editorconfig
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.AssemblyInfoInputs.cache
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.AssemblyInfo.cs
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.csproj.CoreCompileInputs.cache
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.sourcelink.json
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.dll
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/refint/NvdClient.dll
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/NvdClient.pdb
+/home/hacki/ProgrammingProjects/PowerShellProjects/PSNvdRoH/NvdClient/obj/Debug/net8.0/ref/NvdClient.dll
