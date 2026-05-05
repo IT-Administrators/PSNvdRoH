@@ -16,14 +16,27 @@ public class CveQueryParameters
     /// <summary>
     /// Free‑text keyword search across CVE descriptions.
     /// Maps to "keywordSearch".
+    /// Accepts multiple values.
     /// </summary>
-    public string? KeywordSearch { get; set; }
+    public string[]? KeywordSearch { get; set; }
 
     /// <summary>
     /// Filter by CPE (Common Platform Enumeration) name.
     /// Maps to "cpeName".
     /// </summary>
     public string? CpeName { get; set; }
+
+    /// <summary>
+    /// Filter by CVE identifier.
+    /// Maps to "cveID".
+    /// </summary>
+    public string? CveID { get; set; }
+
+    /// <summary>
+    /// Filter by CVE tag.
+    /// Maps to "cveTag".
+    /// </summary>
+    public CveTag? CveTag { get; set; }
 
 
     // CVSS FILTERS (ENUMS + METRICS)
@@ -41,16 +54,31 @@ public class CveQueryParameters
     public CvssV3Severity? CvssV3Severity { get; set; }
 
     /// <summary>
-    /// Filter by CVSS v2 base score (0.0 - 10.0).
-    /// Maps to "cvssV2Metrics".
+    /// Filter by CVSS v4 severity.
+    /// Maps to "cvssV4Severity".
     /// </summary>
-    public double? CvssV2Metrics { get; set; }
+    public CvssV4Severity? CvssV4Severity { get; set; }
 
     /// <summary>
-    /// Filter by CVSS v3 base score (0.0 - 10.0).
-    /// Maps to "cvssV3Metrics".
+    /// Filter by CVSS v2 metrics.
+    /// Maps to "cvssV2Metrics".
+    /// This parameter is encoded as a string and cannot be combined with other metrics.
     /// </summary>
-    public double? CvssV3Metrics { get; set; }
+    public string? CvssV2Metrics { get; set; }
+
+    /// <summary>
+    /// Filter by CVSS v3 metrics.
+    /// Maps to "cvssV3Metrics".
+    /// This parameter is encoded as a string and cannot be combined with other metrics.
+    /// </summary>
+    public string? CvssV3Metrics { get; set; }
+
+    /// <summary>
+    /// Filter by CVSS v4 metrics.
+    /// Maps to "cvssV4Metrics".
+    /// This parameter is encoded as a string and cannot be combined with other metrics.
+    /// </summary>
+    public string? CvssV4Metrics { get; set; }
 
 
     // CPE MATCHING
@@ -60,6 +88,18 @@ public class CveQueryParameters
     /// Maps to "cpeMatchString".
     /// </summary>
     public bool? CpeMatchString { get; set; }
+
+    /// <summary>
+    /// Require exact keyword matching when using keywordSearch.
+    /// Maps to "keywordExactMatch".
+    /// </summary>
+    public bool? KeywordExactMatch { get; set; }
+
+    /// <summary>
+    /// Exclude rejected CVEs from the response.
+    /// Maps to "noRejected".
+    /// </summary>
+    public bool? NoRejected { get; set; }
 
 
     // DATE FILTERS
@@ -87,6 +127,24 @@ public class CveQueryParameters
     /// Maps to "lastModEndDate".
     /// </summary>
     public DateTime? LastModEndDate { get; set; }
+
+    /// <summary>
+    /// Only return CVEs added to the CISA KEV catalog on or after this date.
+    /// Maps to "kevStartDate".
+    /// </summary>
+    public DateTime? KevStartDate { get; set; }
+
+    /// <summary>
+    /// Only return CVEs added to the CISA KEV catalog on or before this date.
+    /// Maps to "kevEndDate".
+    /// </summary>
+    public DateTime? KevEndDate { get; set; }
+
+    /// <summary>
+    /// Filter by source identifier.
+    /// Maps to "sourceIdentifier".
+    /// </summary>
+    public string? SourceIdentifier { get; set; }
 
     // PAGINATION
 
