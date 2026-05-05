@@ -5,7 +5,7 @@
 /// 
 /// Responsibilities:
 ///   - Manage HttpClient
-///   - Attach API key
+///   - Attach API key (optional)
 ///   - Build request URLs
 ///   - Return raw JSON
 /// 
@@ -15,10 +15,13 @@ public class NvdApiClient
 {
     private readonly HttpClient _http;
 
-    public NvdApiClient(string apiKey)
+    public NvdApiClient(string? apiKey = null)
     {
         _http = new HttpClient();
-        _http.DefaultRequestHeaders.Add("apiKey", apiKey);
+        if (!string.IsNullOrEmpty(apiKey))
+        {
+            _http.DefaultRequestHeaders.Add("apiKey", apiKey);
+        }
     }
 
     public async Task<string> GetCvesAsync(CveQueryParameters parameters)
