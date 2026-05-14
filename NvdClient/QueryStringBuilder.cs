@@ -17,6 +17,8 @@ public static class QueryStringBuilder
 {
     public static string ToQueryString(CveQueryParameters p)
     {
+        ValidateParameters(p);
+
         var q = HttpUtility.ParseQueryString(string.Empty);
 
         // Helper method to add parameters only when they have values.
@@ -104,5 +106,62 @@ public static class QueryStringBuilder
         Add("sourceIdentifier", p.SourceIdentifier);
 
         return "?" + q.ToString();
+    }
+
+    /// <summary>
+    /// Validate the parameters, some of them can not be run together like
+    /// CvssV2metrics and CvssV§metrics and some must be spcified together.
+    /// 
+    /// Responsibilities:
+    ///   - Check allowed parameter matches
+    ///   - Check unallowed parameter matches
+    /// </summary>
+    private static void ValidateParameters(CveQueryParameters p)
+    {
+        var metricCount = (p.CvssV2Metrics != null ? 1 : 0)
+            + (p.CvssV3Metrics != null ? 1 : 0)
+            + (p.CvssV4Metrics != null ? 1 : 0);
+        if (metricCount > 1)
+        {
+            throw new InvalidOperationException("Only one CVSS metrics parameter may be specified: cvssV2Metrics, cvssV3Metrics or cvssV4Metrics.");
+        }
+
+        var severityCount = (p.CvssV2Severity != null ? 1 : 0)
+            + (p.CvssV3Severity != null ? 1 : 0)
+            + (p.CvssV4Severity != null ? 1 : 0);
+        if (severityCount > 1)
+        {
+            throw new InvalidOperationException("Only one CVSS severity parameter may be specified: cvssV2Severity, cvssV3Severity or cvssV4Severity.");
+        }
+
+        if ((p.PubStartDate != null) ^ (p.PubEndDate != null))
+        {
+            throw new InvalidOperationException("Both pubStartDate and pubEndDate must be specified together.");
+        }
+
+        if ((p.LastModStartDate != null) ^ (p.LastModEndDate != null))
+        {
+            throw new InvalidOperationException("Both lastModStartDate and lastModEndDate must be specified together.");
+        }
+
+        if (p.KeywordExactMatch == true && (p.KeywordSearch == null || p.KeywordSearch.Length == 0))
+        {
+            throw new InvalidOperationException("keywordExactMatch requires keywordSearch to be specified.");
+        }
+
+        if (p.IsVulnerable == true && string.IsNullOrEmpty(p.CpeName))
+        {
+            throw new InvalidOperationException("isVulnerable requires cpeName to be specified.");
+        }
+    }
+
+    private static string? GetEnumValue(object enumValue)
+    {
+        var member = enumValue.GetType().GetMember(enumValue.ToString() ?? string.Empty).FirstOrDefault();
+        if (member == null)
+            return enumValue.ToString();
+
+        var attribute = member.GetCustomAttribute<EnumMemberAttribute>();
+        return attribute?.Value ?? enumValue.ToString();
     }
 }
