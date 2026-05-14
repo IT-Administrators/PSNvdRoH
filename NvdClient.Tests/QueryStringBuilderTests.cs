@@ -43,28 +43,38 @@ namespace NvdClient.Tests
 
             Assert.Equal("openssl", values.GetValues("keywordSearch")![0]);
             Assert.Equal("kernel", values.GetValues("keywordSearch")![1]);
-            Assert.Equal("True", values["keywordExactMatch"]);
+
+            Assert.Equal("true", values["keywordExactMatch"]);
             Assert.Equal("CVE-2025-1234", values["cveID"]);
             Assert.Equal("unsupported-when-assigned", values["cveTag"]);
-            Assert.Equal("cpe:2.3:a:apache:http_server:2.4.54", values["cpeName"]);
+
+            Assert.Equal(
+                "cpe:2.3:a:apache:http_server:2.4.54",
+                HttpUtility.UrlDecode(values["cpeName"])
+            );
+
             Assert.Equal("HIGH", values["cvssV2Severity"]);
             Assert.Equal("5.0", values["cvssV2Metrics"]);
-            Assert.Equal("True", values["cpeMatchString"]);
-            Assert.Equal(parameters.PubStartDate!.Value.ToString("o"), values["pubStartDate"]);
-            Assert.Equal(parameters.PubEndDate!.Value.ToString("o"), values["pubEndDate"]);
-            Assert.Equal(parameters.LastModStartDate!.Value.ToString("o"), values["lastModStartDate"]);
-            Assert.Equal(parameters.LastModEndDate!.Value.ToString("o"), values["lastModEndDate"]);
-            Assert.Equal(parameters.KevStartDate!.Value.ToString("o"), values["kevStartDate"]);
-            Assert.Equal(parameters.KevEndDate!.Value.ToString("o"), values["kevEndDate"]);
+
+            Assert.Equal("true", values["cpeMatchString"]);
+
+            Assert.Equal("2025-01-01T00:00:00.000Z", values["pubStartDate"]);
+            Assert.Equal("2025-01-31T23:59:59.000Z", values["pubEndDate"]);
+            Assert.Equal("2025-02-01T00:00:00.000Z", values["lastModStartDate"]);
+            Assert.Equal("2025-02-28T23:59:59.000Z", values["lastModEndDate"]);
+            Assert.Equal("2025-03-01T00:00:00.000Z", values["kevStartDate"]);
+            Assert.Equal("2025-03-15T00:00:00.000Z", values["kevEndDate"]);
+
             Assert.Equal("cisa", values["sourceIdentifier"]);
             Assert.Equal("100", values["resultsPerPage"]);
             Assert.Equal("0", values["startIndex"]);
-            Assert.Equal("True", values["hasCertAlerts"]);
-            Assert.Equal("True", values["hasCertNotes"]);
-            Assert.Equal("True", values["hasKev"]);
-            Assert.Equal("True", values["hasOval"]);
-            Assert.Equal("True", values["isVulnerable"]);
-            Assert.Equal("True", values["noRejected"]);
+
+            Assert.Equal("true", values["hasCertAlerts"]);
+            Assert.Equal("true", values["hasCertNotes"]);
+            Assert.Equal("true", values["hasKev"]);
+            Assert.Equal("true", values["hasOval"]);
+            Assert.Equal("true", values["isVulnerable"]);
+            Assert.Equal("true", values["noRejected"]);
         }
 
         [Fact]
