@@ -28,6 +28,16 @@ public class NvdApiClient
     {
         var query = QueryStringBuilder.ToQueryString(parameters);
         var url = $"https://services.nvd.nist.gov/rest/json/cves/2.0{query}";
-        return await _http.GetStringAsync(url);
+
+        var response = await _http.GetAsync(url);
+        var content = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException(
+                $"NVD API returned {(int)response.StatusCode} ({response.ReasonPhrase}): {content}");
+        }
+
+        return content;
     }
 }
