@@ -11,9 +11,7 @@ InModuleScope PSNvdRoH {
             }
         }
 
-        # ---------------------------------------------------------------------
         # PARAMETER SET TESTS
-        # ---------------------------------------------------------------------
         Context "Parameter Set Enforcement" {
 
             It "Allows CvssV2Severity alone" {
@@ -40,9 +38,7 @@ InModuleScope PSNvdRoH {
             }
         }
 
-        # ---------------------------------------------------------------------
-        # REQUIRED-TOGETHER PARAMETER TESTS
-        # ---------------------------------------------------------------------
+        # REQUIRED-TOGETHER PARAMETER TESTS     
         Context "Required Parameter Pairs" {
 
             It "Requires PubStartDate and PubEndDate together" {
@@ -71,9 +67,7 @@ InModuleScope PSNvdRoH {
             }
         }
 
-        # ---------------------------------------------------------------------
         # LOGICAL DEPENDENCY TESTS
-        # ---------------------------------------------------------------------
         Context "Logical Parameter Dependencies" {
 
             It "KeywordExactMatch requires KeywordSearch" {
@@ -92,9 +86,7 @@ InModuleScope PSNvdRoH {
             }
         }
 
-        # ---------------------------------------------------------------------
         # PARAMETER PASS-THROUGH TESTS
-        # ---------------------------------------------------------------------
         Context "Parameter Passing to C# Object" {
 
             It "Passes CveID into the C# parameter object" {
@@ -119,9 +111,7 @@ InModuleScope PSNvdRoH {
 
         }
 
-        # ---------------------------------------------------------------------
         # SUCCESSFUL EXECUTION TESTS
-        # ---------------------------------------------------------------------
         Context "Execution Flow" {
 
             It "Returns parsed JSON" {
@@ -141,9 +131,7 @@ InModuleScope PSNvdRoH {
             }
         }
 
-        # ---------------------------------------------------------------------
         # ERROR HANDLING TESTS
-        # ---------------------------------------------------------------------
         Context "Error Handling" {
 
             It "Handles HttpRequestException" {
