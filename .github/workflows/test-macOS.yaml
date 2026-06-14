@@ -23,9 +23,6 @@ jobs:
       - name: Run C# tests
         run: dotnet test --configuration Release --no-build
 
-      - name: Install PowerShell Core
-        run: brew install --cask powershell
-
       - name: Run PowerShell tests
         shell: pwsh
         run: |
