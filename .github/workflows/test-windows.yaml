@@ -22,11 +22,10 @@ jobs:
 
       - name: Run C# tests
         run: dotnet test --configuration Release --no-build
-
-      - name: Install PowerShell Core
-        uses: PowerShell/PowerShell-For-GitHub-Actions@v1
-        with:
-          version: 'latest'
+      
+      - name: Check PowerShell version
+        shell: pwsh
+        run: pwsh --version
 
       - name: Run PowerShell tests
         shell: pwsh
