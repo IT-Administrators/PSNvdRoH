@@ -31,8 +31,8 @@ Whether you're planning infrastructure deployments, conducting security complian
 
 ### Prerequisites
 
-- **PowerShell**: Windows PowerShell 5.1+ or PowerShell Core 7.0+
-- **Operating Systems**: Windows, Linux
+- **PowerShell**: PowerShell Core 7.0+
+- **Operating Systems**: Windows, Linux, Mac
 - **.NET Runtime**: .NET 8.0+ (for the C# library)
 - **NVD API Key** (optional): Get one from [NVD][Get an API Key]
   - Without API key: 10 requests per 1 hour
